@@ -9,11 +9,56 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <script>
+        // Wait until the window finishes loaded before executing any script
+        window.onload = function() {
+          // Initialize the activityNumber
+          var activityNumber = 0;  
+          // Select the button
+          var addButton = document.getElementById("add_experience");
+          // Select the element
+          var inputFields  = document.getElementById("inputFields");
+          function get_info_row(number) {
+            dates_row = `<div class="row">
+                        <div class="col-sm">
+                            <label for="start_date${number}">Start date</label>
+                            <input type="text" class="form-control" name = "start_date${number}" required id="start_date${number}" placeholder="mm/yyyy">
+                        </div>
+                        <div class="col-sm">
+                            <label for="end_date${number}">End date</label>
+                            <input type="text" class="form-control" name = "end_date${number}" required id="end_date"  placeholder="mm/yyyy" >
+                        </div>
+                        <div class="col-sm">
+                            <label for="title${number}">Title</label>
+                            <input type="text" class="form-control" name = "title${number}" required id="title${number}"  placeholder="title" >
+                        </div>
+                    </div>`;
+                return dates_row;
+            }
+            function get_mission_row(number) {
+                mission_row = `<div class="row">
+                    <label for="mission${number}">Mission details</label>
+                    <textarea class="form-control" id="mission${number}" name = "mission${number}" rows="3"></textarea>
+                </div>`;
+                return mission_row;
+            }
+          // Attach handler to the button click event
+          addButton.onclick = function() {
+            activityNumber += 1;
+            inputFields  = document.getElementById("inputFields");
+          // Add a new piece of info using the correct activityNumber
+            inputFields.innerHTML += get_info_row(activityNumber) + get_mission_row(activityNumber);
+            // alert(document.getElementById('start_date').value);
+          }
+        }
+  
+     </script>
+
   </head>
   <body>
     <div class="container">
-        <form method="post" action="arriva">
-            <div class="inputFields">
+        <form method="post">
+            <div class="inputFields" id = "inputFields">
                 <div class="row">
                     <div class="col-sm">
                         <label for="start_date">Start date</label>
@@ -29,18 +74,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label for="exampleFormControlTextarea1">Mission details</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="mission">Mission details</label>
+                    <textarea class="form-control" id="mission" name = "mission" rows="3"></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
+        <button id="add_experience">Add Experience</button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
   </body>
 </html>
 <html>
